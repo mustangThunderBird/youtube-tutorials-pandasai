@@ -3488,3 +3488,1216 @@ chatbot.execute(code_to_run, environment)
 FileNotFoundError: [Errno 2] No such file or directory: 'stock_data.csv'
 
 2024-10-06 19:50:24 [ERROR] Pipeline failed on step 6: [Errno 2] No such file or directory: 'stock_data.csv'
+2024-10-09 22:40:12 [INFO] Question: Plot the average volume per month for each month in 2015 for INTC and AAL
+2024-10-09 22:40:12 [INFO] Running PandasAI with local LLM...
+2024-10-09 22:40:12 [INFO] Prompt ID: f03deb67-e695-4feb-82b0-65c1ce1dd2bf
+2024-10-09 22:40:12 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-09 22:40:12 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-09 22:40:12 [INFO] Executing Step 1: CacheLookup
+2024-10-09 22:40:12 [INFO] Executing Step 2: PromptGeneration
+2024-10-09 22:40:12 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2017-04-28,33.61,72.6615,20.375,111.64,5705153,DE
+2016-08-19,,,,940.81,3118706,DWDP
+2015-06-22,253.26,38.405,112.265,35.6963,4560497,MRK
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Plot the average volume per month for each month in 2015 for INTC and AAL
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-10-09 22:40:12 [INFO] Executing Step 3: CodeGenerator
+2024-10-09 22:40:20 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 22:40:20 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2017-04-28,33.61,72.6615,20.375,111.64,5705153,DE
+2016-08-19,,,,940.81,3118706,DWDP
+2015-06-22,253.26,38.405,112.265,35.6963,4560497,MRK
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Plot the average volume per month for each month in 2015 for INTC and AAL
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-10-09 22:40:20 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import pyplot
+plt.style.use('ggplot')
+
+# Read the dataframes from the list into separate variables
+df_intc = dfs[0]
+df_aal = dfs[1]
+
+# Create a new dataframe to store the average volume for each month in 2015
+df_avg_vol = pd.DataFrame()
+
+# Calculate the average volume for each month in 2015 for INTC and AAL
+for i in range(2):
+    df = dfs[i]
+    avg_vol = df['volume'].groupby(df['date'].dt.strftime('%Y-%m')).mean()
+    df_avg_vol = pd.concat([df_avg_vol, avg_vol], ignore_index=True)
+
+# Plot the average volume per month for INTC and AAL
+pyplot.plot(df_intc['volume'].groupby(df_intc['date'].dt.strftime('%Y-%m')).mean(), label='Intc')
+pyplot.plot(df_aal['volume'].groupby(df_aal['date'].dt.strftime('%Y-%m')).mean(), label='AAL')
+pyplot.legend()
+pyplot.show()
+
+# Save the chart as png file
+fig = pyplot.gcf()
+fig.savefig('chart.png')
+
+# Declare result variable with value and type
+result = {'type': 'plot', 'value': 'chart.png'}
+            ```
+            
+2024-10-09 22:40:20 [INFO] Executing Step 4: CachePopulation
+2024-10-09 22:40:20 [INFO] Executing Step 5: CodeCleaning
+2024-10-09 22:40:20 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-09 22:40:20 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 22:40:20 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 22:40:20 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2017-04-28,33.61,72.6615,20.375,111.64,5705153,DE
+2016-08-19,,,,940.81,3118706,DWDP
+2015-06-22,253.26,38.405,112.265,35.6963,4560497,MRK
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot the average volume per month for each month in 2015 for INTC and AAL
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import pyplot
+plt.style.use('ggplot')
+
+# Read the dataframes from the list into separate variables
+df_intc = dfs[0]
+df_aal = dfs[1]
+
+# Create a new dataframe to store the average volume for each month in 2015
+df_avg_vol = pd.DataFrame()
+
+# Calculate the average volume for each month in 2015 for INTC and AAL
+for i in range(2):
+    df = dfs[i]
+    avg_vol = df['volume'].groupby(df['date'].dt.strftime('%Y-%m')).mean()
+    df_avg_vol = pd.concat([df_avg_vol, avg_vol], ignore_index=True)
+
+# Plot the average volume per month for INTC and AAL
+pyplot.plot(df_intc['volume'].groupby(df_intc['date'].dt.strftime('%Y-%m')).mean(), label='Intc')
+pyplot.plot(df_aal['volume'].groupby(df_aal['date'].dt.strftime('%Y-%m')).mean(), label='AAL')
+pyplot.legend()
+pyplot.show()
+
+# Save the chart as png file
+fig = pyplot.gcf()
+fig.savefig('chart.png')
+
+# Declare result variable with value and type
+result = {'type': 'plot', 'value': 'chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 95, in execute
+    code_to_run = self.get_code_to_run(input, code_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 152, in get_code_to_run
+    code_to_run = self._clean_code(code, context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 521, in _clean_code
+    self._extract_fix_dataframe_redeclarations(
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 426, in _extract_fix_dataframe_redeclarations
+    exec(code, env)
+  File "<string>", line 5, in <module>
+IndexError: list index out of range
+
+
+Fix the python code above and return the new python code:
+2024-10-09 22:40:20 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 22:40:27 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 22:40:27 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2017-04-28,33.61,72.6615,20.375,111.64,5705153,DE
+2016-08-19,,,,940.81,3118706,DWDP
+2015-06-22,253.26,38.405,112.265,35.6963,4560497,MRK
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot the average volume per month for each month in 2015 for INTC and AAL
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import pyplot
+plt.style.use('ggplot')
+
+# Read the dataframes from the list into separate variables
+df_intc = dfs[0]
+df_aal = dfs[1]
+
+# Create a new dataframe to store the average volume for each month in 2015
+df_avg_vol = pd.DataFrame()
+
+# Calculate the average volume for each month in 2015 for INTC and AAL
+for i in range(2):
+    df = dfs[i]
+    avg_vol = df['volume'].groupby(df['date'].dt.strftime('%Y-%m')).mean()
+    df_avg_vol = pd.concat([df_avg_vol, avg_vol], ignore_index=True)
+
+# Plot the average volume per month for INTC and AAL
+pyplot.plot(df_intc['volume'].groupby(df_intc['date'].dt.strftime('%Y-%m')).mean(), label='Intc')
+pyplot.plot(df_aal['volume'].groupby(df_aal['date'].dt.strftime('%Y-%m')).mean(), label='AAL')
+pyplot.legend()
+pyplot.show()
+
+# Save the chart as png file
+fig = pyplot.gcf()
+fig.savefig('chart.png')
+
+# Declare result variable with value and type
+result = {'type': 'plot', 'value': 'chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 95, in execute
+    code_to_run = self.get_code_to_run(input, code_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 152, in get_code_to_run
+    code_to_run = self._clean_code(code, context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 521, in _clean_code
+    self._extract_fix_dataframe_redeclarations(
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 426, in _extract_fix_dataframe_redeclarations
+    exec(code, env)
+  File "<string>", line 5, in <module>
+IndexError: list index out of range
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 22:40:27 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import pyplot
+plt.style.use('ggplot')
+
+# Read the dataframes from the list into separate variables
+df_intc = dfs[0]
+df_aal = dfs[1]
+
+# Create a new dataframe to store the average volume for each month in 2015
+df_avg_vol = pd.DataFrame()
+
+# Calculate the average volume for each month in 2015 for INTC and AAL
+for i in range(2):
+    df = dfs[i]
+    avg_vol = df['volume'].groupby(df['date'].dt.strftime('%Y-%m')).mean()
+    df_avg_vol = pd.concat([df_avg_vol, avg_vol], ignore_index=True)
+
+# Plot the average volume per month for INTC and AAL
+pyplot.plot(df_intc['volume'].groupby(df_intc['date'].dt.strftime('%Y-%m')).mean(), label='Intc')
+pyplot.plot(df_aal['volume'].groupby(df_aal['date'].dt.strftime('%Y-%m')).mean(), label='AAL')
+pyplot.legend()
+pyplot.show()
+
+# Save the chart as png file
+fig = pyplot.gcf()
+fig.savefig('chart.png')
+
+# Declare result variable with value and type
+result = {'type': 'plot', 'value': 'chart.png'}
+            ```
+            
+2024-10-09 22:40:27 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 22:40:27 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-09 22:40:27 [ERROR] Pipeline failed on step 2: list index out of range
+2024-10-09 22:40:27 [ERROR] Pipeline failed on step 5: list index out of range
+2024-10-09 22:42:20 [INFO] Question: Plot the average volume per month for each month in 2015 for INTC and AAL
+2024-10-09 22:42:20 [INFO] Running PandasAI with local LLM...
+2024-10-09 22:42:20 [INFO] Prompt ID: 2137e67c-49a5-4044-8731-44107e7ffee8
+2024-10-09 22:42:20 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-09 22:42:20 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-09 22:42:20 [INFO] Executing Step 1: CacheLookup
+2024-10-09 22:42:20 [INFO] Using cached response
+2024-10-09 22:42:20 [INFO] Executing Step 2: PromptGeneration
+2024-10-09 22:42:20 [INFO] Executing Step 2: Skipping...
+2024-10-09 22:42:20 [INFO] Executing Step 3: CodeGenerator
+2024-10-09 22:42:20 [INFO] Executing Step 3: Skipping...
+2024-10-09 22:42:20 [INFO] Executing Step 4: CachePopulation
+2024-10-09 22:42:20 [INFO] Executing Step 4: Skipping...
+2024-10-09 22:42:20 [INFO] Executing Step 5: CodeCleaning
+2024-10-09 22:42:20 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-09 22:42:20 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 22:42:20 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 22:42:20 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2017-02-17,,176.095,,2.35,4748735,GOOG
+2016-03-09,837.81,,253.79,134.01,1222418,EXPD
+2014-08-08,51.5933,78.395,60.57,137.96,793685,APD
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot the average volume per month for each month in 2015 for INTC and AAL
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import pyplot
+plt.style.use('ggplot')
+
+# Read the dataframes from the list into separate variables
+df_intc = dfs[0]
+df_aal = dfs[1]
+
+# Create a new dataframe to store the average volume for each month in 2015
+df_avg_vol = pd.DataFrame()
+
+# Calculate the average volume for each month in 2015 for INTC and AAL
+for i in range(2):
+    df = dfs[i]
+    avg_vol = df['volume'].groupby(df['date'].dt.strftime('%Y-%m')).mean()
+    df_avg_vol = pd.concat([df_avg_vol, avg_vol], ignore_index=True)
+
+# Plot the average volume per month for INTC and AAL
+pyplot.plot(df_intc['volume'].groupby(df_intc['date'].dt.strftime('%Y-%m')).mean(), label='Intc')
+pyplot.plot(df_aal['volume'].groupby(df_aal['date'].dt.strftime('%Y-%m')).mean(), label='AAL')
+pyplot.legend()
+pyplot.show()
+
+# Save the chart as png file
+fig = pyplot.gcf()
+fig.savefig('chart.png')
+
+# Declare result variable with value and type
+result = {'type': 'plot', 'value': 'chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 95, in execute
+    code_to_run = self.get_code_to_run(input, code_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 152, in get_code_to_run
+    code_to_run = self._clean_code(code, context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 521, in _clean_code
+    self._extract_fix_dataframe_redeclarations(
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 426, in _extract_fix_dataframe_redeclarations
+    exec(code, env)
+  File "<string>", line 5, in <module>
+IndexError: list index out of range
+
+
+Fix the python code above and return the new python code:
+2024-10-09 22:42:20 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 22:42:29 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 22:42:29 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2017-02-17,,176.095,,2.35,4748735,GOOG
+2016-03-09,837.81,,253.79,134.01,1222418,EXPD
+2014-08-08,51.5933,78.395,60.57,137.96,793685,APD
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ Plot the average volume per month for each month in 2015 for INTC and AAL
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import pyplot
+plt.style.use('ggplot')
+
+# Read the dataframes from the list into separate variables
+df_intc = dfs[0]
+df_aal = dfs[1]
+
+# Create a new dataframe to store the average volume for each month in 2015
+df_avg_vol = pd.DataFrame()
+
+# Calculate the average volume for each month in 2015 for INTC and AAL
+for i in range(2):
+    df = dfs[i]
+    avg_vol = df['volume'].groupby(df['date'].dt.strftime('%Y-%m')).mean()
+    df_avg_vol = pd.concat([df_avg_vol, avg_vol], ignore_index=True)
+
+# Plot the average volume per month for INTC and AAL
+pyplot.plot(df_intc['volume'].groupby(df_intc['date'].dt.strftime('%Y-%m')).mean(), label='Intc')
+pyplot.plot(df_aal['volume'].groupby(df_aal['date'].dt.strftime('%Y-%m')).mean(), label='AAL')
+pyplot.legend()
+pyplot.show()
+
+# Save the chart as png file
+fig = pyplot.gcf()
+fig.savefig('chart.png')
+
+# Declare result variable with value and type
+result = {'type': 'plot', 'value': 'chart.png'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 95, in execute
+    code_to_run = self.get_code_to_run(input, code_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 152, in get_code_to_run
+    code_to_run = self._clean_code(code, context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 521, in _clean_code
+    self._extract_fix_dataframe_redeclarations(
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_cleaning.py", line 426, in _extract_fix_dataframe_redeclarations
+    exec(code, env)
+  File "<string>", line 5, in <module>
+IndexError: list index out of range
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 22:42:29 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import pyplot
+plt.style.use('ggplot')
+
+# Read the dataframes from the list into separate variables
+try:
+    df_intc = dfs[0]
+    df_aal = dfs[1]
+except IndexError:
+    df_intc = dfs[0]
+    df_aal = None
+
+# Create a new dataframe to store the average volume for each month in 2015
+df_avg_vol = pd.DataFrame()
+
+# Calculate the average volume for each month in 2015 for INTC and AAL
+for i in range(2):
+    df = dfs[i]
+    if df is not None:
+        avg_vol = df['volume'].groupby(df['date'].dt.strftime('%Y-%m')).mean()
+        df_avg_vol = pd.concat([df_avg_vol, avg_vol], ignore_index=True)
+
+# Plot the average volume per month for INTC and AAL
+if df_aal is not None:
+    pyplot.plot(df_intc['volume'].groupby(df_intc['date'].dt.strftime('%Y-%m')).mean(), label='Intc')
+    pyplot.plot(df_aal['volume'].groupby(df_aal['date'].dt.strftime('%Y-%m')).mean(), label='AAL')
+    pyplot.legend()
+    pyplot.show()
+
+# Save the chart as png file
+fig = pyplot.gcf()
+fig.savefig('chart.png')
+
+# Declare result variable with value and type
+result = {'type': 'plot', 'value': 'chart.png'}
+            ```
+            
+2024-10-09 22:42:29 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 22:42:29 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-09 22:42:29 [ERROR] Pipeline failed on step 2: name 'IndexError' is not defined
+2024-10-09 22:42:29 [ERROR] Pipeline failed on step 5: name 'IndexError' is not defined
+2024-10-09 22:43:32 [INFO] Question: What was the average open for INTC in 2016
+2024-10-09 22:43:32 [INFO] Running PandasAI with local LLM...
+2024-10-09 22:43:32 [INFO] Prompt ID: d548e567-93e6-47a3-9589-4756743725c3
+2024-10-09 22:43:32 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-09 22:43:32 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-09 22:43:32 [INFO] Executing Step 1: CacheLookup
+2024-10-09 22:43:32 [INFO] Executing Step 2: PromptGeneration
+2024-10-09 22:43:33 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-08-20,227.9,,173.855,460.14,2322617,CCI
+2014-08-12,20.9925,44.945,,204.66,1550350,ROK
+2015-10-20,,596.0304,32.075,526.66,2587973,EFX
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What was the average open for INTC in 2016
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-10-09 22:43:33 [INFO] Executing Step 3: CodeGenerator
+2024-10-09 22:43:36 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 22:43:36 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-08-20,227.9,,173.855,460.14,2322617,CCI
+2014-08-12,20.9925,44.945,,204.66,1550350,ROK
+2015-10-20,,596.0304,32.075,526.66,2587973,EFX
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What was the average open for INTC in 2016
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-10-09 22:43:36 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+# TODO: import the required dependencies
+import matplotlib.pyplot as plt
+
+# Write code here
+
+# Declare result var: 
+result = { "type": "dataframe", "value": dfs[0].loc["2016"] }
+
+# Plot chart
+plt.plot(dfs[0].loc["2016"].index, dfs[0].loc["2016"].open)
+plt.xlabel("Date")
+plt.ylabel("Open")
+plt.title("Average Open for INTC in 2016")
+plt.savefig("temp_chart.png")
+            ```
+            
+2024-10-09 22:43:36 [INFO] Executing Step 4: CachePopulation
+2024-10-09 22:43:36 [INFO] Executing Step 5: CodeCleaning
+2024-10-09 22:43:36 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-09 22:43:36 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+        ```
+2024-10-09 22:43:36 [INFO] Executing Step 6: CodeExecution
+2024-10-09 22:43:36 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+2024-10-09 22:43:36 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-09 22:43:36 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 22:43:36 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 22:43:36 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-08-20,227.9,,173.855,460.14,2322617,CCI
+2014-08-12,20.9925,44.945,,204.66,1550350,ROK
+2015-10-20,,596.0304,32.075,526.66,2587973,EFX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+2024-10-09 22:43:36 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 22:43:41 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 22:43:41 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-08-20,227.9,,173.855,460.14,2322617,CCI
+2014-08-12,20.9925,44.945,,204.66,1550350,ROK
+2015-10-20,,596.0304,32.075,526.66,2587973,EFX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 22:43:41 [INFO] Code generated:
+            ```
+            result = {'type': 'dataframe', 'value': dfs[0].loc[dfs[0]['date'] == 2016]}
+plt.plot(dfs[0].loc[dfs[0]['date'] == 2016].index, dfs[0].loc[dfs[0]['date'] == 2016].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+            ```
+            
+2024-10-09 22:43:41 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 22:43:41 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-09 22:43:41 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0].loc[dfs[0]['date'] == 2016]}
+plt.plot(dfs[0].loc[dfs[0]['date'] == 2016].index, dfs[0].loc[dfs[0]['date'] == 2016].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+        ```
+2024-10-09 22:43:41 [INFO] Executing Step 7: ResultValidation
+2024-10-09 22:43:41 [INFO] Answer: {'type': 'dataframe', 'value': Empty DataFrame
+Columns: [date, open, high, low, close, volume, Name]
+Index: []}
+2024-10-09 22:43:41 [INFO] Executing Step 8: ResultParsing
+2024-10-09 22:44:35 [INFO] Question: What was the average open for INTC in 2016
+2024-10-09 22:44:35 [INFO] Running PandasAI with local LLM...
+2024-10-09 22:44:35 [INFO] Prompt ID: a710a9ab-3e2b-47ff-8f9d-013775bda37e
+2024-10-09 22:44:35 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-09 22:44:35 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-09 22:44:35 [INFO] Executing Step 1: CacheLookup
+2024-10-09 22:44:35 [INFO] Using cached response
+2024-10-09 22:44:35 [INFO] Executing Step 2: PromptGeneration
+2024-10-09 22:44:35 [INFO] Executing Step 2: Skipping...
+2024-10-09 22:44:35 [INFO] Executing Step 3: CodeGenerator
+2024-10-09 22:44:35 [INFO] Executing Step 3: Skipping...
+2024-10-09 22:44:35 [INFO] Executing Step 4: CachePopulation
+2024-10-09 22:44:35 [INFO] Executing Step 4: Skipping...
+2024-10-09 22:44:35 [INFO] Executing Step 5: CodeCleaning
+2024-10-09 22:44:35 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-09 22:44:35 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+        ```
+2024-10-09 22:44:35 [INFO] Executing Step 6: CodeExecution
+2024-10-09 22:44:35 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+2024-10-09 22:44:35 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-09 22:44:35 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 22:44:35 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 22:44:35 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2013-08-07,45.02,208.34,,121.67,346824,SIG
+2013-05-09,,,106.69,92.2,515856,GE
+2016-10-11,47.634,59.985,181.86,544.14,2856938,PM
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+2024-10-09 22:44:35 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 22:44:40 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 22:44:40 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2013-08-07,45.02,208.34,,121.67,346824,SIG
+2013-05-09,,,106.69,92.2,515856,GE
+2016-10-11,47.634,59.985,181.86,544.14,2856938,PM
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 22:44:40 [INFO] Code generated:
+            ```
+            result = {'type': 'dataframe', 'value': dfs[0].loc[:,'2016']}
+plt.plot(dfs[0].loc[:,'2016'].index, dfs[0].loc[:,'2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+            ```
+            
+2024-10-09 22:44:40 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 22:44:40 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-09 22:44:40 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0].loc[:, '2016']}
+plt.plot(dfs[0].loc[:, '2016'].index, dfs[0].loc[:, '2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+        ```
+2024-10-09 22:44:40 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: '2016'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1184, in __getitem__
+    return self._getitem_tuple(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1368, in _getitem_tuple
+    return self._getitem_lowerdim(tup)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1065, in _getitem_lowerdim
+    section = self._getitem_axis(key, axis=i)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4287, in xs
+    return self[key]
+           ~~~~^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: '2016'
+
+2024-10-09 22:44:40 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-10-09 22:44:40 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 22:44:40 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 22:44:40 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2013-08-07,45.02,208.34,,121.67,346824,SIG
+2013-05-09,,,106.69,92.2,515856,GE
+2016-10-11,47.634,59.985,181.86,544.14,2856938,PM
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc[:, '2016']}
+plt.plot(dfs[0].loc[:, '2016'].index, dfs[0].loc[:, '2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: '2016'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1184, in __getitem__
+    return self._getitem_tuple(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1368, in _getitem_tuple
+    return self._getitem_lowerdim(tup)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1065, in _getitem_lowerdim
+    section = self._getitem_axis(key, axis=i)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4287, in xs
+    return self[key]
+           ~~~~^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+2024-10-09 22:44:40 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 22:44:46 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 22:44:46 [ERROR] Pipeline failed on step 1: No code found in the response
+2024-10-09 22:44:46 [ERROR] Pipeline failed on step 6: No code found in the response
+2024-10-09 22:45:16 [INFO] Question: What was the average open for INTC in 2016
+2024-10-09 22:45:16 [INFO] Running PandasAI with local LLM...
+2024-10-09 22:45:16 [INFO] Prompt ID: c5231af2-fbda-4fc1-8f12-9048bc604f2f
+2024-10-09 22:45:16 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-09 22:45:16 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-09 22:45:16 [INFO] Executing Step 1: CacheLookup
+2024-10-09 22:45:16 [INFO] Using cached response
+2024-10-09 22:45:16 [INFO] Executing Step 2: PromptGeneration
+2024-10-09 22:45:16 [INFO] Executing Step 2: Skipping...
+2024-10-09 22:45:16 [INFO] Executing Step 3: CodeGenerator
+2024-10-09 22:45:16 [INFO] Executing Step 3: Skipping...
+2024-10-09 22:45:16 [INFO] Executing Step 4: CachePopulation
+2024-10-09 22:45:16 [INFO] Executing Step 4: Skipping...
+2024-10-09 22:45:16 [INFO] Executing Step 5: CodeCleaning
+2024-10-09 22:45:16 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-09 22:45:16 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+        ```
+2024-10-09 22:45:16 [INFO] Executing Step 6: CodeExecution
+2024-10-09 22:45:16 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+2024-10-09 22:45:16 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-09 22:45:16 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 22:45:16 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 22:45:16 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2015-03-27,,181.54,31.7898,65.82,882527,EBAY
+2017-05-12,573.66,65.4989,,166.59,6750877,CHRW
+2015-06-10,105.16,,46.465,525.91,2796240,ADP
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+2024-10-09 22:45:16 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 22:45:24 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 22:45:24 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2015-03-27,,181.54,31.7898,65.82,882527,EBAY
+2017-05-12,573.66,65.4989,,166.59,6750877,CHRW
+2015-06-10,105.16,,46.465,525.91,2796240,ADP
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 22:45:24 [INFO] Code generated:
+            ```
+            result = {'type': 'dataframe', 'value': dfs[0].loc['2015-01-01':'2016-12-31']}
+            ```
+            
+2024-10-09 22:45:24 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 22:45:24 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0].loc['2015-01-01':'2016-12-31']}
+        ```
+2024-10-09 22:45:25 [INFO] Executing Step 7: ResultValidation
+2024-10-09 22:45:25 [INFO] Answer: {'type': 'dataframe', 'value':               date   open   high    low  close   volume Name
+201500  2016-04-20  68.21  69.09  67.57  68.41  1026408  EQT
+201501  2016-04-21  68.61  68.83  66.40  66.89  1304835  EQT
+201502  2016-04-22  67.32  68.73  66.50  68.47  1026605  EQT
+201503  2016-04-25  68.16  68.51  67.11  68.45  1073875  EQT
+201504  2016-04-26  68.82  69.84  68.11  69.31  1707461  EQT
+...            ...    ...    ...    ...    ...      ...  ...
+201595  2016-09-02  72.20  72.95  71.55  71.82  1023238  EQT
+201596  2016-09-06  71.81  72.72  71.61  72.65   853228  EQT
+201597  2016-09-07  72.88  73.25  71.88  72.43   966189  EQT
+201598  2016-09-08  72.97  73.97  72.66  73.62  1197446  EQT
+201599  2016-09-09  73.20  74.30  72.54  72.54  1618377  EQT
+
+[100 rows x 7 columns]}
+2024-10-09 22:45:25 [INFO] Executing Step 8: ResultParsing
