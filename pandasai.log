@@ -4701,3 +4701,1660 @@ result = {'type': 'dataframe', 'value': dfs[0].loc['2015-01-01':'2016-12-31']}
 
 [100 rows x 7 columns]}
 2024-10-09 22:45:25 [INFO] Executing Step 8: ResultParsing
+2024-10-11 09:36:43 [INFO] Question: What was the average open for INTC in 2016
+2024-10-11 09:36:43 [INFO] Running PandasAI with local LLM...
+2024-10-11 09:36:43 [INFO] Prompt ID: aea0a641-67c5-4623-bf73-89ac442020e1
+2024-10-11 09:36:43 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-11 09:36:43 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-11 09:36:43 [INFO] Executing Step 1: CacheLookup
+2024-10-11 09:36:43 [INFO] Using cached response
+2024-10-11 09:36:43 [INFO] Executing Step 2: PromptGeneration
+2024-10-11 09:36:43 [INFO] Executing Step 2: Skipping...
+2024-10-11 09:36:43 [INFO] Executing Step 3: CodeGenerator
+2024-10-11 09:36:43 [INFO] Executing Step 3: Skipping...
+2024-10-11 09:36:43 [INFO] Executing Step 4: CachePopulation
+2024-10-11 09:36:43 [INFO] Executing Step 4: Skipping...
+2024-10-11 09:36:43 [INFO] Executing Step 5: CodeCleaning
+2024-10-11 09:36:43 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-11 09:36:43 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+        ```
+2024-10-11 09:36:43 [INFO] Executing Step 6: CodeExecution
+2024-10-11 09:36:43 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+2024-10-11 09:36:43 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-11 09:36:43 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 09:36:43 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 09:36:43 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-02-03,,55.846,549.12,18.17,298782,PGR
+2016-10-13,218.94,,110.8299,209.55,4969412,GT
+2014-02-18,33.785,44.6073,,99.105,1063390,HOLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+2024-10-11 09:36:43 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 09:36:52 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:36:52 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-02-03,,55.846,549.12,18.17,298782,PGR
+2016-10-13,218.94,,110.8299,209.55,4969412,GT
+2014-02-18,33.785,44.6073,,99.105,1063390,HOLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 09:36:52 [INFO] Code generated:
+            ```
+            # Ensure the date column is parsed correctly as datetime type
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'GT') & (dfs[0].index.year == 2016)]['open']
+
+average_open_intc_2016 = intc_2016.mean()
+
+print(f"The average open for INTC in 2016 was: ${average_open_intc_2016:.2f}")
+            ```
+            
+2024-10-11 09:36:52 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 09:36:52 [INFO] 
+Code running:
+```
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'GT') & (dfs[0].index.year == 2016)]['open']
+average_open_intc_2016 = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open_intc_2016:.2f}')
+        ```
+2024-10-11 09:36:52 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+AttributeError: 'RangeIndex' object has no attribute 'year'
+
+2024-10-11 09:36:52 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-10-11 09:36:52 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 09:36:52 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 09:36:52 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-02-03,,55.846,549.12,18.17,298782,PGR
+2016-10-13,218.94,,110.8299,209.55,4969412,GT
+2014-02-18,33.785,44.6073,,99.105,1063390,HOLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'GT') & (dfs[0].index.year == 2016)]['open']
+average_open_intc_2016 = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open_intc_2016:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+AttributeError: 'RangeIndex' object has no attribute 'year'
+
+
+Fix the python code above and return the new python code:
+2024-10-11 09:36:52 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 09:36:59 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:36:59 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-02-03,,55.846,549.12,18.17,298782,PGR
+2016-10-13,218.94,,110.8299,209.55,4969412,GT
+2014-02-18,33.785,44.6073,,99.105,1063390,HOLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'GT') & (dfs[0].index.year == 2016)]['open']
+average_open_intc_2016 = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open_intc_2016:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+AttributeError: 'RangeIndex' object has no attribute 'year'
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 09:36:59 [INFO] Code generated:
+            ```
+            dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'GT') & (pd.to_datetime(dfs[0]['date']).dt.year == 2016)]['open']
+average_open_intc_2016 = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open_intc_2016:.2f}')
+            ```
+            
+2024-10-11 09:36:59 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 09:36:59 [INFO] 
+Code running:
+```
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'GT') & (pd.to_datetime(dfs[0]['date']).dt.year == 2016)]['open']
+average_open_intc_2016 = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open_intc_2016:.2f}')
+        ```
+2024-10-11 09:36:59 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-10-11 09:36:59 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-10-11 09:36:59 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 09:36:59 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 09:36:59 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-02-03,,55.846,549.12,18.17,298782,PGR
+2016-10-13,218.94,,110.8299,209.55,4969412,GT
+2014-02-18,33.785,44.6073,,99.105,1063390,HOLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'GT') & (pd.to_datetime(dfs[0]['date']).dt.year == 2016)]['open']
+average_open_intc_2016 = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open_intc_2016:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+2024-10-11 09:36:59 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 09:37:07 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:37:07 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-02-03,,55.846,549.12,18.17,298782,PGR
+2016-10-13,218.94,,110.8299,209.55,4969412,GT
+2014-02-18,33.785,44.6073,,99.105,1063390,HOLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'GT') & (pd.to_datetime(dfs[0]['date']).dt.year == 2016)]['open']
+average_open_intc_2016 = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open_intc_2016:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 09:37:07 [INFO] Code generated:
+            ```
+            # Convert 'date' to datetime type and set it as index if not already done
+dfs[0].set_index(pd.to_datetime(dfs[0]['date']), inplace=True)
+
+# Filter the dataframe for INTC in year 2016 (assuming such data exists)
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0].index.year == 2016)]['open']
+
+# Calculate the average open price
+average_open_intc_2016 = intc_2016.mean()
+
+print(f'The average open for INTC in 2016 was: ${average_open_intc_2016:.2f}')
+            ```
+            
+2024-10-11 09:37:07 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 09:37:07 [INFO] 
+Code running:
+```
+dfs[0].set_index(pd.to_datetime(dfs[0]['date']), inplace=True)
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0].index.year == 2016)]['open']
+average_open_intc_2016 = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open_intc_2016:.2f}')
+        ```
+2024-10-11 09:37:07 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-10-11 09:37:07 [ERROR] Pipeline failed on step 6: No result returned
+2024-10-11 09:37:38 [INFO] Question: What was the average open for INTC in 2016
+2024-10-11 09:37:38 [INFO] Running PandasAI with local LLM...
+2024-10-11 09:37:38 [INFO] Prompt ID: 1c7fb79a-3d8c-4f0c-99ca-7459565502f8
+2024-10-11 09:37:38 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-11 09:37:38 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-11 09:37:38 [INFO] Executing Step 1: CacheLookup
+2024-10-11 09:37:38 [INFO] Using cached response
+2024-10-11 09:37:38 [INFO] Executing Step 2: PromptGeneration
+2024-10-11 09:37:38 [INFO] Executing Step 2: Skipping...
+2024-10-11 09:37:38 [INFO] Executing Step 3: CodeGenerator
+2024-10-11 09:37:38 [INFO] Executing Step 3: Skipping...
+2024-10-11 09:37:38 [INFO] Executing Step 4: CachePopulation
+2024-10-11 09:37:38 [INFO] Executing Step 4: Skipping...
+2024-10-11 09:37:38 [INFO] Executing Step 5: CodeCleaning
+2024-10-11 09:37:38 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-11 09:37:38 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+        ```
+2024-10-11 09:37:38 [INFO] Executing Step 6: CodeExecution
+2024-10-11 09:37:38 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+2024-10-11 09:37:38 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-11 09:37:38 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 09:37:38 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 09:37:38 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2016-01-07,,,89.75,325.52,3934686,WMB
+2014-01-06,129.37,421.93,76.122,13.135,967129,AXP
+2015-11-03,404.59,83.23,,1155.95,2375468,CCL
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+2024-10-11 09:37:38 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 09:37:52 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:37:52 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2016-01-07,,,89.75,325.52,3934686,WMB
+2014-01-06,129.37,421.93,76.122,13.135,967129,AXP
+2015-11-03,404.59,83.23,,1155.95,2375468,CCL
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 09:37:52 [INFO] Code generated:
+            ```
+            # Assuming 'dfs[0]' is your data
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0]['date'].dt.year == 2016)]['open']
+
+average_open = intc_2016.mean()
+print(f"The average open for INTC in 2016 was: ${average_open:.2f}")
+            ```
+            
+2024-10-11 09:37:52 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 09:37:52 [INFO] 
+Code running:
+```
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0]['date'].dt.year == 2016)]['open']
+average_open = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open:.2f}')
+        ```
+2024-10-11 09:37:52 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+2024-10-11 09:37:52 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-10-11 09:37:52 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 09:37:52 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 09:37:52 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2016-01-07,,,89.75,325.52,3934686,WMB
+2014-01-06,129.37,421.93,76.122,13.135,967129,AXP
+2015-11-03,404.59,83.23,,1155.95,2375468,CCL
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0]['date'].dt.year == 2016)]['open']
+average_open = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+
+Fix the python code above and return the new python code:
+2024-10-11 09:37:52 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 09:37:59 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:37:59 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2016-01-07,,,89.75,325.52,3934686,WMB
+2014-01-06,129.37,421.93,76.122,13.135,967129,AXP
+2015-11-03,404.59,83.23,,1155.95,2375468,CCL
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0]['date'].dt.year == 2016)]['open']
+average_open = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 09:37:59 [INFO] Code generated:
+            ```
+            # Import necessary library
+import pandas as pd
+
+# Ensure date column is of datetime type
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0]['date'].dt.year == 2016)]['open']
+average_open = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open:.2f}')
+            ```
+            
+2024-10-11 09:37:59 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 09:37:59 [INFO] 
+Code running:
+```
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0]['date'].dt.year == 2016)]['open']
+average_open = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open:.2f}')
+        ```
+2024-10-11 09:37:59 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-10-11 09:37:59 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-10-11 09:37:59 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 09:37:59 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 09:37:59 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2016-01-07,,,89.75,325.52,3934686,WMB
+2014-01-06,129.37,421.93,76.122,13.135,967129,AXP
+2015-11-03,404.59,83.23,,1155.95,2375468,CCL
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0]['date'].dt.year == 2016)]['open']
+average_open = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+2024-10-11 09:37:59 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 09:38:06 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:38:06 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2016-01-07,,,89.75,325.52,3934686,WMB
+2014-01-06,129.37,421.93,76.122,13.135,967129,AXP
+2015-11-03,404.59,83.23,,1155.95,2375468,CCL
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_2016 = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0]['date'].dt.year == 2016)]['open']
+average_open = intc_2016.mean()
+print(f'The average open for INTC in 2016 was: ${average_open:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 09:38:06 [INFO] Code generated:
+            ```
+            dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_data = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0]['date'].dt.year == 2016)]
+
+if not intc_data.empty:
+    average_open = intc_data['open'].mean()
+    print(f'The average open for INTC in 2016 was: ${average_open:.2f}')
+else:
+    print('No data available for INTC in 2016.')
+            ```
+            
+2024-10-11 09:38:06 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 09:38:06 [INFO] 
+Code running:
+```
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+intc_data = dfs[0][(dfs[0]['Name'] == 'INTC') & (dfs[0]['date'].dt.year == 2016)]
+if not intc_data.empty:
+    average_open = intc_data['open'].mean()
+    print(f'The average open for INTC in 2016 was: ${average_open:.2f}')
+else:
+    print('No data available for INTC in 2016.')
+        ```
+2024-10-11 09:38:06 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-10-11 09:38:06 [ERROR] Pipeline failed on step 6: No result returned
+2024-10-11 09:39:12 [INFO] Question: What was the average open for INTC in 2016
+2024-10-11 09:39:12 [INFO] Running PandasAI with local LLM...
+2024-10-11 09:39:12 [INFO] Prompt ID: 9f219e48-942f-4dab-acc7-e90630f4b26f
+2024-10-11 09:39:12 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-11 09:39:12 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-11 09:39:12 [INFO] Executing Step 1: CacheLookup
+2024-10-11 09:39:12 [INFO] Using cached response
+2024-10-11 09:39:12 [INFO] Executing Step 2: PromptGeneration
+2024-10-11 09:39:12 [INFO] Executing Step 2: Skipping...
+2024-10-11 09:39:12 [INFO] Executing Step 3: CodeGenerator
+2024-10-11 09:39:12 [INFO] Executing Step 3: Skipping...
+2024-10-11 09:39:12 [INFO] Executing Step 4: CachePopulation
+2024-10-11 09:39:12 [INFO] Executing Step 4: Skipping...
+2024-10-11 09:39:12 [INFO] Executing Step 5: CodeCleaning
+2024-10-11 09:39:12 [INFO] Saving charts to /home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png
+2024-10-11 09:39:12 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+        ```
+2024-10-11 09:39:12 [INFO] Executing Step 6: CodeExecution
+2024-10-11 09:39:12 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+2024-10-11 09:39:12 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-11 09:39:12 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 09:39:12 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 09:39:12 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2018-01-08,40.78,169.2032,161.6,88.41,17947034,ADM
+2014-02-28,378.08,,26.9875,47.195,5396206,PPL
+2016-01-28,,53.125,,28.2925,2182831,NFLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+2024-10-11 09:39:12 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 09:39:20 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:39:20 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2018-01-08,40.78,169.2032,161.6,88.41,17947034,ADM
+2014-02-28,378.08,,26.9875,47.195,5396206,PPL
+2016-01-28,,53.125,,28.2925,2182831,NFLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+result = {'type': 'dataframe', 'value': dfs[0].loc['2016']}
+plt.plot(dfs[0].loc['2016'].index, dfs[0].loc['2016'].open)
+plt.xlabel('Date')
+plt.ylabel('Open')
+plt.title('Average Open for INTC in 2016')
+plt.savefig('/home/crisco/source/repos/youtube-tutorials-pandasai/exports/charts/temp_chart.png')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1191, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1431, in _getitem_axis
+    return self._get_label(key, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexing.py", line 1381, in _get_label
+    return self.obj.xs(label, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 4301, in xs
+    loc = index.get_loc(key)
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: '2016'
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 09:39:20 [INFO] Code generated:
+            ```
+            # Filter data for the year 2016 and calculate the average open price
+avg_open_intc_2016 = dfs[0][(dfs[0]['date'].dt.year == 2016) & (dfs[0]['Name'] == 'INTC')]['open'].mean()
+
+# Print the result
+print(f"The average open price for INTC in 2016 was ${avg_open_intc_2016:.2f}")
+            ```
+            
+2024-10-11 09:39:20 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 09:39:20 [INFO] 
+Code running:
+```
+avg_open_intc_2016 = dfs[0][(dfs[0]['date'].dt.year == 2016) & (dfs[0]['Name'] == 'INTC')]['open'].mean()
+print(f'The average open price for INTC in 2016 was ${avg_open_intc_2016:.2f}')
+        ```
+2024-10-11 09:39:20 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+2024-10-11 09:39:20 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-10-11 09:39:20 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 09:39:20 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 09:39:20 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2018-01-08,40.78,169.2032,161.6,88.41,17947034,ADM
+2014-02-28,378.08,,26.9875,47.195,5396206,PPL
+2016-01-28,,53.125,,28.2925,2182831,NFLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+avg_open_intc_2016 = dfs[0][(dfs[0]['date'].dt.year == 2016) & (dfs[0]['Name'] == 'INTC')]['open'].mean()
+print(f'The average open price for INTC in 2016 was ${avg_open_intc_2016:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+
+Fix the python code above and return the new python code:
+2024-10-11 09:39:20 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 09:39:26 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:39:26 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2018-01-08,40.78,169.2032,161.6,88.41,17947034,ADM
+2014-02-28,378.08,,26.9875,47.195,5396206,PPL
+2016-01-28,,53.125,,28.2925,2182831,NFLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+avg_open_intc_2016 = dfs[0][(dfs[0]['date'].dt.year == 2016) & (dfs[0]['Name'] == 'INTC')]['open'].mean()
+print(f'The average open price for INTC in 2016 was ${avg_open_intc_2016:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 09:39:26 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+# Assuming dfs[0] is your DataFrame
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+
+avg_open_intc_2016 = dfs[0].loc[(dfs[0]['date'].dt.year == 2016) & (dfs[0]['Name'] == 'INTC'), 'open'].mean()
+print(f'The average open price for INTC in 2016 was ${avg_open_intc_2016:.2f}')
+            ```
+            
+2024-10-11 09:39:26 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 09:39:26 [INFO] 
+Code running:
+```
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+avg_open_intc_2016 = dfs[0].loc[(dfs[0]['date'].dt.year == 2016) & (dfs[0]['Name'] == 'INTC'), 'open'].mean()
+print(f'The average open price for INTC in 2016 was ${avg_open_intc_2016:.2f}')
+        ```
+2024-10-11 09:39:27 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-10-11 09:39:27 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-10-11 09:39:27 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 09:39:27 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 09:39:27 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2018-01-08,40.78,169.2032,161.6,88.41,17947034,ADM
+2014-02-28,378.08,,26.9875,47.195,5396206,PPL
+2016-01-28,,53.125,,28.2925,2182831,NFLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+avg_open_intc_2016 = dfs[0].loc[(dfs[0]['date'].dt.year == 2016) & (dfs[0]['Name'] == 'INTC'), 'open'].mean()
+print(f'The average open price for INTC in 2016 was ${avg_open_intc_2016:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+2024-10-11 09:39:27 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 09:39:33 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:39:33 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2018-01-08,40.78,169.2032,161.6,88.41,17947034,ADM
+2014-02-28,378.08,,26.9875,47.195,5396206,PPL
+2016-01-28,,53.125,,28.2925,2182831,NFLX
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in 2016
+
+You generated this python code:
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+avg_open_intc_2016 = dfs[0].loc[(dfs[0]['date'].dt.year == 2016) & (dfs[0]['Name'] == 'INTC'), 'open'].mean()
+print(f'The average open price for INTC in 2016 was ${avg_open_intc_2016:.2f}')
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 09:39:33 [INFO] Code generated:
+            ```
+            dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+avg_open_nflx_2016 = dfs[0].loc[(dfs[0]['date'].dt.year == 2016) & (dfs[0]['Name'] == 'NFLX'), 'open'].mean()
+print(f'The average open price for NFLX in 2016 was ${avg_open_nflx_2016:.2f}')
+            ```
+            
+2024-10-11 09:39:33 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 09:39:33 [INFO] 
+Code running:
+```
+dfs[0]['date'] = pd.to_datetime(dfs[0]['date'])
+avg_open_nflx_2016 = dfs[0].loc[(dfs[0]['date'].dt.year == 2016) & (dfs[0]['Name'] == 'NFLX'), 'open'].mean()
+print(f'The average open price for NFLX in 2016 was ${avg_open_nflx_2016:.2f}')
+        ```
+2024-10-11 09:39:33 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 175, in execute_code
+    raise NoResultFoundError("No result returned")
+pandasai.exceptions.NoResultFoundError: No result returned
+
+2024-10-11 09:39:33 [ERROR] Pipeline failed on step 6: No result returned
+2024-10-11 09:41:28 [INFO] Question: What was the average open for INTC in september of 2016
+2024-10-11 09:41:28 [INFO] Running PandasAI with local LLM...
+2024-10-11 09:41:28 [INFO] Prompt ID: 32fedfc0-d856-4bec-b6d2-fdb89b3d4890
+2024-10-11 09:41:28 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-11 09:41:28 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-11 09:41:28 [INFO] Executing Step 1: CacheLookup
+2024-10-11 09:41:28 [INFO] Executing Step 2: PromptGeneration
+2024-10-11 09:41:28 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2016-03-09,82.55,70.275,27.8241,270.86,563279,MET
+2015-04-16,,112.9499,,150.23,2678722,GM
+2015-08-14,100.38,,223.62,23.51,19667862,CMS
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What was the average open for INTC in september of 2016
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-10-11 09:41:28 [INFO] Executing Step 3: CodeGenerator
+2024-10-11 09:41:40 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:41:40 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2016-03-09,82.55,70.275,27.8241,270.86,563279,MET
+2015-04-16,,112.9499,,150.23,2678722,GM
+2015-08-14,100.38,,223.62,23.51,19667862,CMS
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What was the average open for INTC in september of 2016
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-10-11 09:41:40 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared with the given dataframes
+dfs = [pd.DataFrame({
+    'date': ['2016-09-01', '2016-09-02', '2016-09-03'],
+    'open': [25.87, 26.12, 25.98],
+    'Name': ['INTC', 'INTC', 'INTC']
+}), pd.DataFrame({
+    'date': ['2016-09-04', '2016-09-05'],
+    'open': [26.05, 26.23],
+    'Name': ['INTC', 'INTC']
+})]
+
+# Combine all dataframes into one
+all_data = pd.concat(dfs)
+
+# Filter data for INTC in September 2016 and calculate average open price
+avg_open_september_2016 = all_data[(all_data['date'].dt.month == 9) & (all_data['date'].dt.year == 2016)]['open'].mean()
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": avg_open_september_2016
+}
+
+result
+            ```
+            
+2024-10-11 09:41:40 [INFO] Executing Step 4: CachePopulation
+2024-10-11 09:41:40 [INFO] Executing Step 5: CodeCleaning
+2024-10-11 09:41:40 [INFO] 
+Code running:
+```
+all_data = pd.concat(dfs)
+avg_open_september_2016 = all_data[(all_data['date'].dt.month == 9) & (all_data['date'].dt.year == 2016)]['open'].mean()
+result = {'type': 'number', 'value': avg_open_september_2016}
+result
+        ```
+2024-10-11 09:41:40 [INFO] Executing Step 6: CodeExecution
+2024-10-11 09:41:40 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+2024-10-11 09:41:40 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-11 09:41:40 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 09:41:40 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 09:41:40 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2016-03-09,82.55,70.275,27.8241,270.86,563279,MET
+2015-04-16,,112.9499,,150.23,2678722,GM
+2015-08-14,100.38,,223.62,23.51,19667862,CMS
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in september of 2016
+
+You generated this python code:
+all_data = pd.concat(dfs)
+avg_open_september_2016 = all_data[(all_data['date'].dt.month == 9) & (all_data['date'].dt.year == 2016)]['open'].mean()
+result = {'type': 'number', 'value': avg_open_september_2016}
+result
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+
+Fix the python code above and return the new python code:
+2024-10-11 09:41:40 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 09:41:46 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 09:41:46 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2016-03-09,82.55,70.275,27.8241,270.86,563279,MET
+2015-04-16,,112.9499,,150.23,2678722,GM
+2015-08-14,100.38,,223.62,23.51,19667862,CMS
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in september of 2016
+
+You generated this python code:
+all_data = pd.concat(dfs)
+avg_open_september_2016 = all_data[(all_data['date'].dt.month == 9) & (all_data['date'].dt.year == 2016)]['open'].mean()
+result = {'type': 'number', 'value': avg_open_september_2016}
+result
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 09:41:46 [INFO] Code generated:
+            ```
+            all_data = pd.concat(dfs)
+all_data['date'] = pd.to_datetime(all_data['date'])
+avg_open_september_2016 = all_data[(all_data['date'].dt.month == 9) & (all_data['date'].dt.year == 2016)]['open'].mean()
+result = {'type': 'number', 'value': avg_open_september_2016}
+result
+            ```
+            
+2024-10-11 09:41:46 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 09:41:46 [INFO] 
+Code running:
+```
+all_data = pd.concat(dfs)
+all_data['date'] = pd.to_datetime(all_data['date'])
+avg_open_september_2016 = all_data[(all_data['date'].dt.month == 9) & (all_data['date'].dt.year == 2016)]['open'].mean()
+result = {'type': 'number', 'value': avg_open_september_2016}
+result
+        ```
+2024-10-11 09:41:46 [INFO] Executing Step 7: ResultValidation
+2024-10-11 09:41:46 [INFO] Answer: {'type': 'number', 'value': np.float64(88.10127756741251)}
+2024-10-11 09:41:46 [INFO] Executing Step 8: ResultParsing
+2024-10-11 12:08:58 [INFO] Question: What was the average open for INTC in september of 2016?
+2024-10-11 12:08:58 [INFO] Running PandasAI with local LLM...
+2024-10-11 12:08:58 [INFO] Prompt ID: bcc280f1-0362-4756-b4c2-2d618d3f44cb
+2024-10-11 12:08:58 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-11 12:08:58 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-11 12:08:58 [INFO] Executing Step 1: CacheLookup
+2024-10-11 12:08:58 [INFO] Executing Step 2: PromptGeneration
+2024-10-11 12:08:58 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-07-02,75.86,62.298,80.5288,344.43,2491334,NOV
+2014-09-24,37.0576,50.2907,58.805,847.2,868589,LB
+2016-02-19,,,,48.1366,1182984,MTB
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What was the average open for INTC in september of 2016?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-10-11 12:08:58 [INFO] Executing Step 3: CodeGenerator
+2024-10-11 12:09:12 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 12:09:12 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-07-02,75.86,62.298,80.5288,344.43,2491334,NOV
+2014-09-24,37.0576,50.2907,58.805,847.2,868589,LB
+2016-02-19,,,,48.1366,1182984,MTB
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What was the average open for INTC in september of 2016?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-10-11 12:09:12 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared with the given dataframes
+dfs = [pd.DataFrame({
+    'date': ['2014-07-02', '2014-09-24', '2016-02-19'],
+    'open': [75.86, 37.0576, None],
+    'high': [62.298, 50.2907, None],
+    'low': [80.5288, 58.805, None],
+    'close': [344.43, 847.2, 48.1366],
+    'volume': [2491334, 868589, 1182984],
+    'Name': ['NOV', 'LB', 'MTB']
+})]
+
+# Combine all dataframes into one
+df = pd.concat(dfs)
+
+# Filter data for INTC in September 2016 and calculate average open price
+intc_september_2016 = df[(df['date'].dt.month == 9) & (df['date'].dt.year == 2016) & (df['Name'] == 'INTC')]['open']
+average_open = intc_september_2016.mean() if not intc_september_2016.empty else None
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": average_open
+}
+            ```
+            
+2024-10-11 12:09:12 [INFO] Executing Step 4: CachePopulation
+2024-10-11 12:09:12 [INFO] Executing Step 5: CodeCleaning
+2024-10-11 12:09:12 [INFO] 
+Code running:
+```
+df = pd.concat(dfs)
+intc_september_2016 = df[(df['date'].dt.month == 9) & (df['date'].dt.year == 2016) & (df['Name'] == 'INTC')]['open']
+average_open = intc_september_2016.mean() if not intc_september_2016.empty else None
+result = {'type': 'number', 'value': average_open}
+        ```
+2024-10-11 12:09:12 [INFO] Executing Step 6: CodeExecution
+2024-10-11 12:09:12 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+2024-10-11 12:09:12 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-11 12:09:12 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-11 12:09:12 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-11 12:09:12 [INFO] Using prompt: <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-07-02,75.86,62.298,80.5288,344.43,2491334,NOV
+2014-09-24,37.0576,50.2907,58.805,847.2,868589,LB
+2016-02-19,,,,48.1366,1182984,MTB
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in september of 2016?
+
+You generated this python code:
+df = pd.concat(dfs)
+intc_september_2016 = df[(df['date'].dt.month == 9) & (df['date'].dt.year == 2016) & (df['Name'] == 'INTC')]['open']
+average_open = intc_september_2016.mean() if not intc_september_2016.empty else None
+result = {'type': 'number', 'value': average_open}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+
+Fix the python code above and return the new python code:
+2024-10-11 12:09:12 [INFO] Executing Step 1: CodeGenerator
+2024-10-11 12:09:20 [INFO] HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-11 12:09:20 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:619040x7
+date,open,high,low,close,volume,Name
+2014-07-02,75.86,62.298,80.5288,344.43,2491334,NOV
+2014-09-24,37.0576,50.2907,58.805,847.2,868589,LB
+2016-02-19,,,,48.1366,1182984,MTB
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What was the average open for INTC in september of 2016?
+
+You generated this python code:
+df = pd.concat(dfs)
+intc_september_2016 = df[(df['date'].dt.month == 9) & (df['date'].dt.year == 2016) & (df['Name'] == 'INTC')]['open']
+average_open = intc_september_2016.mean() if not intc_september_2016.empty else None
+result = {'type': 'number', 'value': average_open}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 171, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/generic.py", line 6299, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/accessor.py", line 224, in __get__
+    accessor_obj = self._accessor(obj)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/crisco/source/repos/youtube-tutorials-pandasai/myEnv/lib/python3.12/site-packages/pandas/core/indexes/accessors.py", line 643, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-11 12:09:20 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+# Assuming dfs is your list of dataframes
+dfs = [...]  # replace [...] with your actual dataframes
+
+df = pd.concat(dfs)
+
+# Convert date column to datetime format
+df['date'] = pd.to_datetime(df['date'])
+
+intc_september_2016 = df[(df['date'].dt.month == 9) & (df['date'].dt.year == 2016) & (df['Name'] == 'INTC')]['open']
+
+average_open = intc_september_2016.mean() if not intc_september_2016.empty else None
+
+result = {'type': 'number', 'value': average_open}
+            ```
+            
+2024-10-11 12:09:20 [INFO] Executing Step 2: CodeCleaning
+2024-10-11 12:09:20 [INFO] 
+Code running:
+```
+df = pd.concat(dfs)
+df['date'] = pd.to_datetime(df['date'])
+intc_september_2016 = df[(df['date'].dt.month == 9) & (df['date'].dt.year == 2016) & (df['Name'] == 'INTC')]['open']
+average_open = intc_september_2016.mean() if not intc_september_2016.empty else None
+result = {'type': 'number', 'value': average_open}
+        ```
+2024-10-11 12:09:20 [INFO] Executing Step 7: ResultValidation
+2024-10-11 12:09:20 [INFO] Answer: {'type': 'number', 'value': np.float64(36.71666666666666)}
+2024-10-11 12:09:20 [INFO] Executing Step 8: ResultParsing
