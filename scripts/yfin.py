@@ -2,18 +2,26 @@ import requests
 from bs4 import BeautifulSoup
 from yahoo_fin import news
 from transformers import pipeline
-from pandasai import SmartDataframe
-from pandasai.llm.local_llm import LocalLLM
 import warnings
 import pandas as pd
-import numpy as np
 import concurrent.futures
 import unicodedata
 import json
+import re
 
 sentiment_pipeline = pipeline("sentiment-analysis", model="distilbert/distilbert-base-uncased-finetuned-sst-2-english", device=0)
 summarizer = pipeline("summarization")
 warnings.filterwarnings('ignore')
+
+def basic_cleanup(text):
+    """Performs basic cleanup on the input text"""
+    # Normalize Unicode characters
+    cleaned_text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('utf-8', 'ignore')
+    # Remove special characters except common punctuations
+    cleaned_text = re.sub(r'[^a-zA-Z0-9.,;:!?\'\"()\s]', '', cleaned_text)
+    # Remove multiple spaces and newlines
+    cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()
+    return cleaned_text
 
 def summarize_article(article_text):
     # Use the summarizer to create a concise summary
@@ -34,7 +42,7 @@ def get_article_text(url):
             paragraphs = soup.find_all('p')
             article_text = ' '.join([p.get_text() for p in paragraphs])
             # Normalize and remove special characters
-            article_text = unicodedata.normalize('NFKD', article_text).encode('ascii', 'ignore').decode('utf-8')
+            article_text = basic_cleanup(article_text)
             return article_text
         else:
             print(f"Failed to get article text from {url}: Status code {response.status_code}")
@@ -43,15 +51,16 @@ def get_article_text(url):
         print(f"Failed to get article text from {url}: {e}")
         return "N/A"
     
-def prepare_finetuning_data(df:pd.DataFrame):
+def prepare_finetuning_data(df: pd.DataFrame):
     training_data = []
     for _, row in df.iterrows():
         if row.get('sentiment') != "UNKNOWN":
-            context = f"Title: {row['title']}\nPublished: {row['published']}\nArticle: {row['article_text']}\nSentiment: {row['sentiment']}"
+            context = f"Title: {basic_cleanup(row['title'])}\nPublished: {row['published']}\nArticle: {row['article_text']}\nSentiment: {row['sentiment']}"
             # Example question about the article
             question = "What is the sentiment of this article and why?"
             # Summarize the article as a reason
             summary = summarize_article(row['article_text'])
+            summary = basic_cleanup(summary)
             answer = f"The sentiment is {row['sentiment']} because: {summary}"
             
             training_data.append({"prompt": f"{context}\nQuestion: {question}", "completion": answer})
@@ -69,7 +78,7 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 if __name__ == "__main__":  
-    stock_news = news.get_yf_rss('INTC')
+    stock_news = news.get_yf_rss('MSFT')
     df = pd.DataFrame(stock_news)
     df_clean = preprocess_data(df)
     prepare_finetuning_data(df_clean)
